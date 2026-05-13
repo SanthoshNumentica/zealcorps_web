@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Media Content Selector</title>
+  <title>Social Media Selector</title>
 
   <style>
     * {
@@ -17,126 +17,64 @@
       background: linear-gradient(135deg, #020617, #0f172a, #111827);
       color: #ffffff;
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .page {
       width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      padding: 24px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-      padding: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      margin-bottom: 24px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(34, 211, 238, 0.12);
-      color: #a5f3fc;
-      border: 1px solid rgba(34, 211, 238, 0.35);
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      font-size: 48px;
-      line-height: 1;
-      margin-bottom: 18px;
-    }
-
-    .hero p {
-      color: #cbd5e1;
-      font-size: 18px;
-      line-height: 1.7;
       max-width: 760px;
-    }
-
-    .current-card {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 24px;
       padding: 24px;
-    }
-
-    .current-label {
-      color: #94a3b8;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .current-title {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .current-tone {
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-
-    .main-grid {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 24px;
     }
 
     .platform-list {
       display: grid;
-      gap: 14px;
+      gap: 18px;
     }
 
     .platform-btn {
       width: 100%;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
       color: #ffffff;
-      border-radius: 22px;
-      padding: 18px;
+      border-radius: 36px;
+      padding: 28px 32px;
       cursor: pointer;
       text-align: left;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 26px;
       transition: 0.25s ease;
       -webkit-appearance: none;
       appearance: none;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
     }
 
     .platform-btn:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(34, 211, 238, 0.5);
+      background: rgba(255, 255, 255, 0.09);
     }
 
     .platform-btn.active {
-      border-color: rgba(34, 211, 238, 0.8);
-      background: rgba(34, 211, 238, 0.15);
-      box-shadow: 0 14px 40px rgba(34, 211, 238, 0.12);
+      border-color: rgba(34, 211, 238, 0.95);
+      background: rgba(34, 211, 238, 0.14);
+      box-shadow: 0 20px 60px rgba(34, 211, 238, 0.16);
     }
 
     .icon-box {
-      min-width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.1);
+      min-width: 98px;
+      width: 98px;
+      height: 98px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.11);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      font-weight: bold;
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1;
     }
 
     .platform-btn.active .icon-box {
@@ -145,413 +83,122 @@
     }
 
     .platform-name {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 4px;
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.1;
     }
 
     .platform-subtitle {
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    .content-card {
-      min-height: 480px;
-      padding: 34px;
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      overflow: hidden;
-    }
-
-    .content-inner {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 28px;
-    }
-
-    .content-inner.animate {
-      animation: fadeSlide 0.28s ease;
-    }
-
-    @keyframes fadeSlide {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .large-icon {
-      width: 76px;
-      height: 76px;
-      border-radius: 24px;
-      background: rgba(34, 211, 238, 0.12);
-      color: #a5f3fc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      font-weight: bold;
-      margin-bottom: 24px;
-    }
-
-    .small-heading {
-      color: #67e8f9;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: 38px;
-      line-height: 1.08;
-      margin-bottom: 18px;
-    }
-
-    .description {
-      color: #cbd5e1;
-      font-size: 18px;
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .tone-box,
-    .ideas-box {
-      border-radius: 22px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 22px;
-    }
-
-    .tone-box h3,
-    .ideas-box h3 {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .tone-box p {
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-
-    .idea {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: rgba(255, 255, 255, 0.06);
-      padding: 14px;
-      border-radius: 16px;
-      margin-bottom: 12px;
-      color: #e2e8f0;
-      line-height: 1.5;
-    }
-
-    .check {
-      color: #67e8f9;
-      font-weight: bold;
-    }
-
-    .footer-note {
-      margin-top: 24px;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .platform-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .content-inner {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      h2 {
-        font-size: 32px;
-      }
+      color: #a8b3c7;
+      font-size: 24px;
+      line-height: 1.25;
     }
 
     @media (max-width: 600px) {
-      .page {
-        padding: 14px;
+      body {
+        align-items: flex-start;
       }
 
-      .hero,
-      .content-card {
-        padding: 22px;
-        border-radius: 22px;
+      .page {
+        padding: 18px;
+        padding-top: 28px;
       }
 
       .platform-list {
-        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .platform-btn {
-        padding: 16px;
+        border-radius: 30px;
+        padding: 22px;
+        gap: 18px;
       }
 
-      .current-title {
-        font-size: 24px;
-      }
-
-      .description {
-        font-size: 16px;
-      }
-
-      h1 {
+      .icon-box {
+        min-width: 72px;
+        width: 72px;
+        height: 72px;
+        border-radius: 22px;
         font-size: 34px;
       }
 
-      h2 {
-        font-size: 28px;
+      .platform-name {
+        font-size: 26px;
+        margin-bottom: 8px;
+      }
+
+      .platform-subtitle {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .platform-btn {
+        padding: 18px;
+        gap: 14px;
+      }
+
+      .icon-box {
+        min-width: 62px;
+        width: 62px;
+        height: 62px;
+        font-size: 30px;
+      }
+
+      .platform-name {
+        font-size: 23px;
+      }
+
+      .platform-subtitle {
+        font-size: 16px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <section class="hero">
-      <div>
-        <div class="badge">Responsive for Mobile • Tablet • Desktop</div>
-        <h1>Social Media Content Selector</h1>
-        <p>
-          Select a platform to view the recommended content direction, tone, and content ideas.
-          This single HTML webpage is optimized for all screen sizes.
-        </p>
-      </div>
-
-      <div class="current-card">
-        <div class="current-label">Current Selection</div>
-        <div class="current-title" id="currentTitle">LinkedIn</div>
-        <div class="current-tone" id="currentTone">Professional • B2B • Authority</div>
-      </div>
-    </section>
-
-    <section class="main-grid">
-      <div class="platform-list">
-        <button type="button" class="platform-btn active" data-platform="linkedin">
-          <div class="icon-box">in</div>
-          <div>
-            <div class="platform-name">LinkedIn</div>
-            <div class="platform-subtitle">Professional outreach</div>
-          </div>
-        </button>
-
-        <button type="button" class="platform-btn" data-platform="twitter">
-          <div class="icon-box">X</div>
-          <div>
-            <div class="platform-name">Twitter / X</div>
-            <div class="platform-subtitle">Fast updates</div>
-          </div>
-        </button>
-
-        <button type="button" class="platform-btn" data-platform="facebook">
-          <div class="icon-box">f</div>
-          <div>
-            <div class="platform-name">Facebook</div>
-            <div class="platform-subtitle">Community engagement</div>
-          </div>
-        </button>
-
-        <button type="button" class="platform-btn" data-platform="instagram">
-          <div class="icon-box">IG</div>
-          <div>
-            <div class="platform-name">Instagram</div>
-            <div class="platform-subtitle">Visual storytelling</div>
-          </div>
-        </button>
-      </div>
-
-      <div class="content-card">
-        <div class="content-inner" id="contentInner">
-          <div>
-            <div class="large-icon" id="largeIcon">in</div>
-            <div class="small-heading" id="platformLabel">LinkedIn</div>
-            <h2 id="headline">Create business-focused content for LinkedIn</h2>
-            <p class="description" id="description">
-              Best for company updates, project references, thought leadership, case studies, and professional networking.
-            </p>
-
-            <div class="tone-box">
-              <h3>Recommended Tone</h3>
-              <p id="toneText">Professional • B2B • Authority</p>
-            </div>
-          </div>
-
-          <div class="ideas-box">
-            <h3>Content Ideas</h3>
-            <div id="ideasList"></div>
-          </div>
+  <main class="page">
+    <section class="platform-list" aria-label="Social media platform selector">
+      <button type="button" class="platform-btn active" data-platform="linkedin" aria-pressed="true">
+        <div class="icon-box">in</div>
+        <div>
+          <div class="platform-name">LinkedIn</div>
+          <div class="platform-subtitle">Professional outreach</div>
         </div>
-      </div>
-    </section>
+      </button>
 
-    <div class="footer-note">
-      Single HTML file. No installation required. Open directly in Chrome, Edge, Firefox, or Safari.
-    </div>
-  </div>
+      <button type="button" class="platform-btn" data-platform="facebook" aria-pressed="false">
+        <div class="icon-box">f</div>
+        <div>
+          <div class="platform-name">Facebook</div>
+          <div class="platform-subtitle">Community engagement</div>
+        </div>
+      </button>
+    </section>
+  </main>
 
   <script>
-    var platforms = {
-      linkedin: {
-        name: "LinkedIn",
-        icon: "in",
-        tone: "Professional • B2B • Authority",
-        headline: "Create business-focused content for LinkedIn",
-        description:
-          "Best for company updates, project references, thought leadership, case studies, and professional networking.",
-        ideas: [
-          "Company capability posts",
-          "Project reference highlights",
-          "Energy saving case studies",
-          "Technical awareness articles"
-        ]
-      },
-      twitter: {
-        name: "Twitter / X",
-        icon: "X",
-        tone: "Short • Direct • Timely",
-        headline: "Create short, high-impact updates for Twitter / X",
-        description:
-          "Best for quick announcements, event updates, industry thoughts, and directing users to your website or LinkedIn page.",
-        ideas: [
-          "Short technical tips",
-          "Event participation updates",
-          "Quick project milestones",
-          "Links to articles or case studies"
-        ]
-      },
-      facebook: {
-        name: "Facebook",
-        icon: "f",
-        tone: "Friendly • Informative • Broad reach",
-        headline: "Create approachable content for Facebook",
-        description:
-          "Best for company awareness, service introductions, community updates, event posts, and general audience engagement.",
-        ideas: [
-          "Service introduction posts",
-          "Team and event photos",
-          "Customer awareness content",
-          "Company news and updates"
-        ]
-      },
-      instagram: {
-        name: "Instagram",
-        icon: "IG",
-        tone: "Visual • Clean • Engaging",
-        headline: "Create visual-first content for Instagram",
-        description:
-          "Best for reels, graphics, carousel posts, project visuals, exhibition photos, and short awareness content.",
-        ideas: [
-          "Before/after visuals",
-          "Carousel explainers",
-          "Project snapshots",
-          "Short reels and highlights"
-        ]
-      }
-    };
-
-    function clearIdeas() {
-      var ideasList = document.getElementById("ideasList");
-      while (ideasList.firstChild) {
-        ideasList.removeChild(ideasList.firstChild);
-      }
-    }
-
-    function addIdea(text) {
-      var ideasList = document.getElementById("ideasList");
-
-      var item = document.createElement("div");
-      item.className = "idea";
-
-      var check = document.createElement("span");
-      check.className = "check";
-      check.textContent = "✓";
-
-      var label = document.createElement("span");
-      label.textContent = text;
-
-      item.appendChild(check);
-      item.appendChild(label);
-      ideasList.appendChild(item);
-    }
-
-    function updatePlatform(platformId) {
-      var selected = platforms[platformId];
-
-      if (!selected) {
-        return;
-      }
-
-      var buttons = document.querySelectorAll(".platform-btn");
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("active");
-
-        if (buttons[i].getAttribute("data-platform") === platformId) {
-          buttons[i].classList.add("active");
-        }
-      }
-
-      document.getElementById("currentTitle").textContent = selected.name;
-      document.getElementById("currentTone").textContent = selected.tone;
-      document.getElementById("largeIcon").textContent = selected.icon;
-      document.getElementById("platformLabel").textContent = selected.name;
-      document.getElementById("headline").textContent = selected.headline;
-      document.getElementById("description").textContent = selected.description;
-      document.getElementById("toneText").textContent = selected.tone;
-
-      clearIdeas();
-
-      for (var j = 0; j < selected.ideas.length; j++) {
-        addIdea(selected.ideas[j]);
-      }
-
-      var contentInner = document.getElementById("contentInner");
-      contentInner.classList.remove("animate");
-
-      setTimeout(function () {
-        contentInner.classList.add("animate");
-      }, 10);
-    }
-
-    function initializePage() {
+    function initializeSelector() {
       var buttons = document.querySelectorAll(".platform-btn");
 
       for (var i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("click", function () {
-          var platformId = this.getAttribute("data-platform");
-          updatePlatform(platformId);
+          for (var j = 0; j < buttons.length; j++) {
+            buttons[j].classList.remove("active");
+            buttons[j].setAttribute("aria-pressed", "false");
+          }
+
+          this.classList.add("active");
+          this.setAttribute("aria-pressed", "true");
         });
       }
-
-      updatePlatform("linkedin");
     }
 
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initializePage);
+      document.addEventListener("DOMContentLoaded", initializeSelector);
     } else {
-      initializePage();
+      initializeSelector();
     }
   </script>
 </body>
