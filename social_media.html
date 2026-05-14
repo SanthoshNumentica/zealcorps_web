@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Media Selector</title>
+  <title>Zealcorps Social Links</title>
 
   <style>
     * {
@@ -33,34 +33,35 @@
       gap: 18px;
     }
 
-    .platform-btn {
+    .platform-link {
       width: 100%;
       border: 1px solid rgba(255, 255, 255, 0.16);
       background: rgba(255, 255, 255, 0.06);
       color: #ffffff;
       border-radius: 36px;
       padding: 28px 32px;
-      cursor: pointer;
       text-align: left;
       display: flex;
       align-items: center;
       gap: 26px;
+      text-decoration: none;
       transition: 0.25s ease;
-      -webkit-appearance: none;
-      appearance: none;
       box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
     }
 
-    .platform-btn:hover {
+    .platform-link:hover,
+    .platform-link:focus {
       transform: translateY(-2px);
-      border-color: rgba(34, 211, 238, 0.5);
-      background: rgba(255, 255, 255, 0.09);
-    }
-
-    .platform-btn.active {
       border-color: rgba(34, 211, 238, 0.95);
       background: rgba(34, 211, 238, 0.14);
       box-shadow: 0 20px 60px rgba(34, 211, 238, 0.16);
+      outline: none;
+    }
+
+    .platform-link:hover .icon-box,
+    .platform-link:focus .icon-box {
+      background: #22d3ee;
+      color: #020617;
     }
 
     .icon-box {
@@ -75,11 +76,7 @@
       font-size: 46px;
       font-weight: 700;
       line-height: 1;
-    }
-
-    .platform-btn.active .icon-box {
-      background: #22d3ee;
-      color: #020617;
+      transition: 0.25s ease;
     }
 
     .platform-name {
@@ -109,7 +106,7 @@
         gap: 16px;
       }
 
-      .platform-btn {
+      .platform-link {
         border-radius: 30px;
         padding: 22px;
         gap: 18px;
@@ -134,7 +131,7 @@
     }
 
     @media (max-width: 380px) {
-      .platform-btn {
+      .platform-link {
         padding: 18px;
         gap: 14px;
       }
@@ -143,7 +140,7 @@
         min-width: 62px;
         width: 62px;
         height: 62px;
-        font-size: 30px;
+        font-size: 26px;
       }
 
       .platform-name {
@@ -159,47 +156,31 @@
 
 <body>
   <main class="page">
-    <section class="platform-list" aria-label="Social media platform selector">
-      <button type="button" class="platform-btn active" data-platform="linkedin" aria-pressed="true">
+    <section class="platform-list" aria-label="Zealcorps social and website links">
+      <a class="platform-link" href="https://www.linkedin.com/company/zealcorps" target="_blank" rel="noopener noreferrer">
         <div class="icon-box">in</div>
         <div>
           <div class="platform-name">LinkedIn</div>
           <div class="platform-subtitle">Professional outreach</div>
         </div>
-      </button>
+      </a>
 
-      <button type="button" class="platform-btn" data-platform="facebook" aria-pressed="false">
+      <a class="platform-link" href="https://www.facebook.com/zealcorps/" target="_blank" rel="noopener noreferrer">
         <div class="icon-box">f</div>
         <div>
           <div class="platform-name">Facebook</div>
           <div class="platform-subtitle">Community engagement</div>
         </div>
-      </button>
+      </a>
+
+      <a class="platform-link" href="https://www.zealcorps.com/" target="_blank" rel="noopener noreferrer">
+        <div class="icon-box">www</div>
+        <div>
+          <div class="platform-name">Company Website</div>
+          <div class="platform-subtitle">Visit Zealcorps online</div>
+        </div>
+      </a>
     </section>
   </main>
-
-  <script>
-    function initializeSelector() {
-      var buttons = document.querySelectorAll(".platform-btn");
-
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", function () {
-          for (var j = 0; j < buttons.length; j++) {
-            buttons[j].classList.remove("active");
-            buttons[j].setAttribute("aria-pressed", "false");
-          }
-
-          this.classList.add("active");
-          this.setAttribute("aria-pressed", "true");
-        });
-      }
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initializeSelector);
-    } else {
-      initializeSelector();
-    }
-  </script>
 </body>
 </html>
